@@ -13,8 +13,12 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
-      - env:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Grant execute permission for bump.sh
+        run: chmod +x .github/scripts/bump.sh
+      - name: Run bump script
+        env:
           USERNAME: github-actions[bot]
           EMAIL: 41898282+github-actions[bot]@users.noreply.github.com
           BUMP_LEVEL: ${{ inputs.bump-level }}
